@@ -4,40 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <rel="stylesheet" href="assets/css/style.css">
-</head>
+    <link rel="stylesheet" href="assets/css/style.css"
 <body>
+
+    <form class="searchBar">
+        <input type="text" class="enterCity" placeholder="Enter city">
+        <button type="submit">Get Weather</button>
+    </form>
+
+    <div class="card" style="display: none">
+    </div>
+
     <div class="container">
-        <div class="header">
-            <h1>API Weather App </h1>
+        <div class="location">
+            <h1 class="city">
+            </h1>
         </div>
-        <div class="main">
-            <div class="search">
-                <input type="text" class="search-bar" placeholder="Enter City">
-                <button class="search-btn">Search</button>
-                    <div class="select">
-                        <select name="City" id="City">
-                            <option value="1">Boston</option>
-                            <option value="2">New York</option>
-                            <option value="3">Los Angeles</option>
-                            <option value="4">Atlanta</option>
-                            <option value="5">Miami</option>
-                    </div>
-            </div>
-            <div class="weather-display">
-                <div class="location">test</div>
-                <div class="weather">test</div>
-                <div class="temperature">test</div>
-            </div>
-
-            
-    
+        <div class="weather">
+            <h2 class="weatherType">Weather</h2>
+        </div>
+        <div class="temperature">
+            <h2 class="temp">Temperature</h2>
+        </div>
+        <div class="humidity">
+            <h2 class="humid">Humidity</h2>
+        </div>
 
 
-
-
-
-
-<script src="assets/js/script.js"></script> 
+    </div>
+ 
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
