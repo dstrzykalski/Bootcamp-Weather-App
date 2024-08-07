@@ -1,7 +1,9 @@
 # Bootcamp-Weather-App
 <img width="956" alt="Challenge-6-Screenshot" src="https://github.com/user-attachments/assets/99af65cd-f2a4-4472-8e6c-4773ea75ddc4">
-
 A Basic Weather App Made with the OpenWeather API
+
+## Deployed Page
+
 https://dstrzykalski.github.io/Bootcamp-Weather-App/
 
 ## Technologies Used
