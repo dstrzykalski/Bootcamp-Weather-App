@@ -1,15 +1,9 @@
-/* Reset default browser styles */
-body, h1, p {
-    margin: 0;
-    padding: 0;
-}
 
-/* Set a background color */
 body {
-    background-color: #f2f2f2;
+    background-color: aqua;
 }
 
-/* Center the content */
+
 .container {
     display: flex;
     justify-content: space-between;
@@ -18,7 +12,7 @@ body {
     padding: 10px;
 }
 
-/* Style the heading */
+
 h1 {
     font-size: 24px;
     font-weight: bold;
@@ -26,7 +20,6 @@ h1 {
     margin-bottom: 16px;
 }
 
-/* Style the paragraph */
 p {
     font-size: 16px;
     color: #666;
