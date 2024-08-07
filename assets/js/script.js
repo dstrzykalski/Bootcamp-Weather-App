@@ -11,7 +11,6 @@ const searchBar = document.querySelector('.searchBar');
 const cities = JSON.parse(localStorage.getItem('cities')) || [];
 const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=';
 const enterCity = document.querySelector(".enterCity");
-const card = document.querySelector(".card");
 
 //This handles the actual retrieval of the weather data
 searchBar.addEventListener("submit", async event => {
@@ -35,6 +34,8 @@ searchBar.addEventListener("submit", async event => {
     }
 });
 
+
+//the async function that retrieves the data from the api and then returns to the submit function
 async function getWeatherData(city){
 
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
@@ -49,31 +50,27 @@ async function getWeatherData(city){
 }
 
 
-
 //handles the display of that data
 function displayWeatherInfo(data){
 
-    const {name: city, 
-           main: {temp, humidity}, 
-           weather: [{description, id}]} = data;
+    //assigns variables to the data
+    const {name: city,  main: {temp, humidity},  weather: [{description, id}]} = data;
 
-    card.textContent = "";
-    card.style.display = "flex";
-
-    const cityDisplay = document.createElement("h1");
-    const tempDisplay = document.createElement("p");
+    //creates the paragraphs to display the info
     const humidityDisplay = document.createElement("p");
     const descDisplay = document.createElement("p");
-
-    cityDisplay.textContent = city;
-    tempDisplay.textContent = `${((temp - 273.15) * (9/5) + 32).toFixed(1)}°F`;
-    humidityDisplay.textContent = `Humidity: ${humidity}%`;
+    const cityDisplay = document.createElement("h1");
+    const tempDisplay = document.createElement("p");
+    
+    //assigns the data to the paragraphs
+    humidityDisplay.textContent = `Humidity: ${humidity}%`; //displays humidity
     descDisplay.textContent = description;
-
-
-
-    findLocation.appendChild(cityDisplay);
-    findTemperature.appendChild(tempDisplay);
+    cityDisplay.textContent = city;
+    tempDisplay.textContent = `${((temp - 273.15) * (9/5) + 32).toFixed(1)}°F`;//converts kelvin to fahrenheit
+    
+    //renders the data under the correct section
     findHumidity.appendChild(humidityDisplay);
     findWeather.appendChild(descDisplay);
+    findLocation.appendChild(cityDisplay);
+    findTemperature.appendChild(tempDisplay);
 }
