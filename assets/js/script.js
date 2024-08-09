@@ -10,6 +10,7 @@ const searchBar = document.querySelector('.searchBar');
 const cities = JSON.parse(localStorage.getItem('cities')) || [];
 const apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=';
 const enterCity = document.querySelector(".enterCity");
+const findWind = document.querySelector('.wind');
 
 //This handles the actual retrieval of the weather data
 searchBar.addEventListener("submit", async event => {
@@ -54,16 +55,18 @@ function displayWeatherInfo(data){
     findWeather.innerHTML = '';
     findLocation.innerHTML = '';
     findTemperature.innerHTML = '';
+    findWind.innerHTML = '';
 
     const place = data.city.name;
-    // forloop to display the data
+    // for loop to display the data
     for (let i = 0; i < data.list.length; i += 8) {
         // Get the forecast data for a specific day
         const forecastData = data.list[i];
 
         // Assign variables to the data
         const { dt_txt: date, main: { temp, humidity }, weather: [{ description }] } = forecastData;
-
+        const { wind: { speed } } = forecastData;
+        const { icon } = forecastData.weather[0];
 
         // Create the elements to display the info
         const forecastContainer = document.createElement("div");
@@ -72,12 +75,16 @@ function displayWeatherInfo(data){
         const descDisplay = document.createElement("p");
         const tempDisplay = document.createElement("p");
         const locationDisplay = document.createElement("h1");
+        const windDisplay = document.createElement("p");
+        const iconDisplay = document.createElement("img");
 
         // Assign the data to the elements
         dateDisplay.textContent = formatDate(date);
         humidityDisplay.textContent = `Humidity: ${humidity}%`;
         descDisplay.textContent = description;
         tempDisplay.textContent = `${((temp - 273.15) * (9/5) + 32).toFixed(1)}°F`;
+        windDisplay.textContent = `Wind Speed: ${speed} mph`;
+        iconDisplay.src = `https://openweathermap.org/img/wn/${icon}.png`;
         //this line makes it so the city name only displays once
         if (i === 0) {
             locationDisplay.textContent = place;
@@ -88,6 +95,8 @@ function displayWeatherInfo(data){
         forecastContainer.appendChild(descDisplay);
         forecastContainer.appendChild(tempDisplay);
         findLocation.appendChild(locationDisplay);
+        forecastContainer.appendChild(windDisplay);
+        forecastContainer.appendChild(iconDisplay);
 
         // Append the container to the forecast section
         findContainer.appendChild(forecastContainer);
