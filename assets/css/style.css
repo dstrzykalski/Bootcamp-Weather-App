@@ -16,6 +16,18 @@ body {
    text-align: center;
 }
 
+#parent {
+    display: flex;
+}
+
+#city-info {
+    flex: 70%;
+}
+
+#search-history {
+    flex: 30%;
+}
+
 
 h1 {
     font-size: 24px;

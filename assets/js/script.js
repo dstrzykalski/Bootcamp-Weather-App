@@ -56,7 +56,8 @@ function displayWeatherInfo(data){
     findLocation.innerHTML = '';
     findTemperature.innerHTML = '';
     findWind.innerHTML = '';
-
+    findContainer.innerHTML = '';
+    console.log (data);
     const place = data.city.name;
     // for loop to display the data
     for (let i = 0; i < data.list.length; i += 8) {
@@ -100,7 +101,10 @@ function displayWeatherInfo(data){
 
         // Append the container to the forecast section
         findContainer.appendChild(forecastContainer);
+
     }
+    saveToLocalStorage(place);
+
 }
 
 // Format the date to display only the date part
@@ -108,6 +112,39 @@ function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
+function saveToLocalStorage (cityName) {
+    // Check if the city is already in the list
+    if (!cities.includes(cityName)) {
+        // Add the city to the list
+        cities.push(cityName);
+        // Save the weather data in local storage
+        localStorage.setItem('cities', JSON.stringify(cities));
+    }
+}
 
-// Save the weather data in local storage
-localStorage.setItem('cities', JSON.stringify(cities));
+function displaySearchHistory(){
+    console.log (cities);
+    let cityDiv = document.createElement("div");
+    for (let i=0; i<cities.length; i++){
+        let cityParagraph = document.createElement("p");
+        let cityButton = document.createElement("button");
+        cityButton.addEventListener("click", async function(event){
+            event.preventDefault();
+            console.log (event.target.innerHTML);
+            let cityName = event.target.innerHTML;
+            let data = await getWeatherData(cityName);
+            console.log(data);
+            // Promise needs to be resolved
+            // 1 - .then()
+            // 2 - async await
+            
+            displayWeatherInfo(data);
+        })
+        cityButton.textContent = cities[i];
+        cityParagraph.append(cityButton);
+        cityDiv.append(cityParagraph);
+    }
+document.getElementById("search-history").append(cityDiv);
+}
+
+displaySearchHistory();
