@@ -1,6 +1,7 @@
 
 body {
     background-color: aqua;
+    font-family: Helvetica, sans-serif, Arial;
 }
 
 
@@ -39,4 +40,22 @@ h1 {
 p {
     font-size: 16px;
     color: #666;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 50%;
+}
+
+.getWeatherButton {
+    width: 15%;
+}
+
+.enterCity {
+    padding: 10px;
 }

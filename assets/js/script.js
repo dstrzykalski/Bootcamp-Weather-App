@@ -63,7 +63,7 @@ function displayWeatherInfo(data){
     for (let i = 0; i < data.list.length; i += 8) {
         // Get the forecast data for a specific day
         const forecastData = data.list[i];
-
+        console.log (forecastData);
         // Assign variables to the data
         const { dt_txt: date, main: { temp, humidity }, weather: [{ description }] } = forecastData;
         const { wind: { speed } } = forecastData;
@@ -104,7 +104,7 @@ function displayWeatherInfo(data){
 
     }
     saveToLocalStorage(place);
-
+    displaySearchHistory();
 }
 
 // Format the date to display only the date part
@@ -125,6 +125,7 @@ function saveToLocalStorage (cityName) {
 function displaySearchHistory(){
     console.log (cities);
     let cityDiv = document.createElement("div");
+    document.getElementById("search-history").innerHTML = "";
     for (let i=0; i<cities.length; i++){
         let cityParagraph = document.createElement("p");
         let cityButton = document.createElement("button");
